@@ -13,7 +13,7 @@ public enum ModifierKeys {
         return this.symbol;
     }
 
-    ModifierKeys(String symbol) {
+    private ModifierKeys(String symbol) {
         this.symbol = symbol;
     }
 }

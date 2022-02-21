@@ -11,7 +11,7 @@ public enum DefaultKeywords {
         return this.keyword;
     }
 
-    DefaultKeywords(String keyword) {
+    private DefaultKeywords(String keyword) {
         this.keyword = keyword;
     }
 }

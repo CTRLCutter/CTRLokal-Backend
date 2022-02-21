@@ -11,7 +11,7 @@ public enum DefaultCommands {
         return this.command;
     }
 
-    DefaultCommands(String command) {
+    private DefaultCommands(String command) {
         this.command = command;
     }
 }

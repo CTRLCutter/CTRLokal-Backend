@@ -15,18 +15,18 @@ public class BasicScriptGeneratorService {
 
     public String generateBasicScript(BasicScriptDTO basicScriptDTO) {
 
-        List<String> translatedModifierKeys = this.translateModifierKeys(basicScriptDTO.getModifierKeys());
-        String command = this.translateCommand(basicScriptDTO.getCommand());
+        List<String> translatedModifierKeys = translateModifierKeys(basicScriptDTO.getModifierKeys());
+        String command = translateCommand(basicScriptDTO.getCommand());
 
         if (translatedModifierKeys.isEmpty() || command == null) {
             return null;
         }
 
-        String hotKeyLine = this.generateHotKeyLine(translatedModifierKeys, basicScriptDTO.getKey());
+        String hotkeyDefinition = generateHotkeyDefinition(translatedModifierKeys, basicScriptDTO.getKey());
 
-        String commandLine = this.generateCommandLine(command, basicScriptDTO.getParameters());
+        String hotkeyCommand = generateHotkeyCommand(command, basicScriptDTO.getParameters());
 
-        return hotKeyLine + commandLine + DefaultKeywords.RETURN.getKeyword();
+        return hotkeyDefinition + hotkeyCommand + DefaultKeywords.RETURN.getKeyword();
     }
 
     private List<String> translateModifierKeys(String[] modifierKeys) {
@@ -44,6 +44,7 @@ public class BasicScriptGeneratorService {
     }
 
     private String translateCommand(String command) {
+
         for (DefaultCommands commandConstant : DefaultCommands.values()) {
             if (command.equals(commandConstant.name())) {
                 return commandConstant.getCommand();
@@ -52,23 +53,29 @@ public class BasicScriptGeneratorService {
         return null;
     }
 
-    private String generateHotKeyLine(List<String> translatedModifierKeys, String key) {
-        String keyLine = "";
+    private String generateHotkeyDefinition(List<String> translatedModifierKeys, String key) {
+        
+        StringBuilder hotkeyDefinitonBuilder = new StringBuilder();
+        
+        translatedModifierKeys.forEach(hotkeyDefinitonBuilder::append);
+        hotkeyDefinitonBuilder.append(key);
+        hotkeyDefinitonBuilder.append(DefaultKeywords.START.getKeyword());
+        hotkeyDefinitonBuilder.append(System.lineSeparator());
 
-        for (String modifierKey : translatedModifierKeys) {
-            keyLine = keyLine.concat(modifierKey);
-        }
-
-        return keyLine + key + DefaultKeywords.START.getKeyword() + System.lineSeparator();
+        return hotkeyDefinitonBuilder.toString();
     }
 
-    private String generateCommandLine(String command, String[] parameters) {
-        String commandLine = command;
+    private String generateHotkeyCommand(String command, String[] parameters) {
+
+        StringBuilder hotkeyCommandBuilder = new StringBuilder(command);
 
         for (String parameter : parameters) {
-            commandLine = commandLine.concat(parameter + " ");
+            hotkeyCommandBuilder.append(parameter);
+            hotkeyCommandBuilder.append(" ");
         }
 
-        return commandLine + System.lineSeparator();
+        hotkeyCommandBuilder.append(System.lineSeparator());
+        
+        return hotkeyCommandBuilder.toString();
     }
 }
