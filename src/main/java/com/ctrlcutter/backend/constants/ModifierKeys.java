@@ -1,5 +1,8 @@
 package com.ctrlcutter.backend.constants;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum ModifierKeys {
 
     CTRL("^"),
@@ -15,5 +18,18 @@ public enum ModifierKeys {
 
     private ModifierKeys(String symbol) {
         this.symbol = symbol;
+    }
+
+    public static ModifierKeys getModifierKeyFromString(String modifierKey) {
+        
+        List<ModifierKeys> keys = Arrays.asList(values());
+        
+        for (ModifierKeys key : keys) {
+            if (key.name().equals(modifierKey)) {
+                return key;
+            }
+        }
+        
+        return null;
     }
 }
