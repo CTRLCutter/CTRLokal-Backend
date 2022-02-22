@@ -63,7 +63,10 @@ public class BasicScriptGeneratorService {
             hotkeyCommandBuilder.append(parameter);
             hotkeyCommandBuilder.append(" ");
         }
-
+        
+        // Remove the trailing whitespace character at the end.
+        hotkeyCommandBuilder.deleteCharAt(hotkeyCommandBuilder.length() - 1);
+        
         hotkeyCommandBuilder.append(System.lineSeparator());
 
         return hotkeyCommandBuilder.toString();
