@@ -2,7 +2,8 @@ package com.ctrlcutter.backend.constants;
 
 public enum DefaultKeywords {
 
-    START("::"),
+    HOTKEY_START("::"),
+    HOTSTRING_START(":"),
     RETURN("return");
 
     private String keyword;

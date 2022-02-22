@@ -49,7 +49,7 @@ public class BasicScriptGeneratorService {
 
         translatedModifierKeys.forEach(hotkeyDefinitonBuilder::append);
         hotkeyDefinitonBuilder.append(key);
-        hotkeyDefinitonBuilder.append(DefaultKeywords.START.getKeyword());
+        hotkeyDefinitonBuilder.append(DefaultKeywords.HOTKEY_START.getKeyword());
         hotkeyDefinitonBuilder.append(System.lineSeparator());
 
         return hotkeyDefinitonBuilder.toString();
