@@ -18,7 +18,7 @@ public class PreDefinedScriptGenerationTest {
 
         PreDefinedScriptDTO scriptDTO = new PreDefinedScriptDTO("win", "soundControl", new DefaultDTO[] {testDTO1, testDTO2});
         PreDefinedScriptGeneratorService service = new PreDefinedScriptGeneratorService();
-
-        assertEquals("^+s::SoundSet,-5\n^Left::SoundSet,+5", service.generatePreDefinedScript(scriptDTO));
+        
+        assertEquals("^+s::SoundSet,-5\r\n^Left::SoundSet,+5", service.generatePreDefinedScript(scriptDTO));
     }
 }

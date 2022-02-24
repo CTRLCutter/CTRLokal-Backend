@@ -5,11 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.ctrlcutter.backend.constants.ModifierKeys;
 import com.ctrlcutter.backend.dto.DefaultDTO;
 import com.ctrlcutter.backend.dto.PreDefinedScriptDTO;
 import com.ctrlcutter.backend.util.FileReader;
 
+@Service
 public class PreDefinedScriptGeneratorService {
 
     private static final String SCRIPT_BASE_PATH = "predefinedScripts/";
@@ -21,7 +24,9 @@ public class PreDefinedScriptGeneratorService {
         List<DefaultDTO> shortcutList = Arrays.asList(scriptDTO.getShortcuts());
         List<String> translatedShortcutList = translateShortcutList(shortcutList);
 
-        String scriptBaseContent = FileReader.readCompleteFile("./src/main/resources/" + SCRIPT_BASE_PATH + os + "/" + scriptType + ".txt");
+        // Or rather put that in a constants class???
+        FileReader fileReader = new FileReader();
+        String scriptBaseContent = fileReader.readFile(SCRIPT_BASE_PATH + os + "/" + scriptType + ".txt");
 
         Object[] shortcutFormattingList = translatedShortcutList.stream().toArray();
 

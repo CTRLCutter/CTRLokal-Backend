@@ -8,6 +8,8 @@ public class BasicScriptDTO {
     private String[] modifierKeys;
     private String[] parameters;
 
+    public BasicScriptDTO() {}
+
     public BasicScriptDTO(String os, String command, String key, String[] modifierKeys, String[] parameters) {
         this.os = os;
         this.command = command;

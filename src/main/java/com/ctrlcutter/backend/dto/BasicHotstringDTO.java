@@ -7,6 +7,8 @@ public class BasicHotstringDTO {
     private String command;
     private String parameter;
 
+    public BasicHotstringDTO() {}
+
     public BasicHotstringDTO(String os, String[] options, String command, String parameter) {
         this.os = os;
         this.options = options;

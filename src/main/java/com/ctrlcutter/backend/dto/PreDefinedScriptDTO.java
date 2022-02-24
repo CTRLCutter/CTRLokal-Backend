@@ -6,6 +6,8 @@ public class PreDefinedScriptDTO {
     private String scriptType;
     private DefaultDTO[] shortcuts;
 
+    public PreDefinedScriptDTO() {}
+
     public PreDefinedScriptDTO(String os, String scriptType, DefaultDTO[] shortcuts) {
         this.os = os;
         this.scriptType = scriptType;

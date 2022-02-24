@@ -5,6 +5,8 @@ public class DefaultDTO {
     private String key;
     private String[] modifierKeys;
 
+    public DefaultDTO() {}
+
     public DefaultDTO(String key, String... modifierKeys) {
         this.key = key;
         this.modifierKeys = modifierKeys;
