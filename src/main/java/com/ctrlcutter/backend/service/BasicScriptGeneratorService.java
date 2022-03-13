@@ -1,6 +1,5 @@
 package com.ctrlcutter.backend.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +16,7 @@ public class BasicScriptGeneratorService {
 
     public String generateBasicScript(BasicScriptDTO basicScriptDTO) {
 
-        List<String> translatedModifierKeys = translateModifierKeys(basicScriptDTO.getModifierKeys());
+        List<String> translatedModifierKeys = this.translateModifierKeys(basicScriptDTO.getModifierKeys());
 
         DefaultCommands command = DefaultCommands.getDefaultCommandFromString(basicScriptDTO.getCommand());
         String translatedCommand = command.getCommand();
@@ -26,16 +25,16 @@ public class BasicScriptGeneratorService {
             return null;
         }
 
-        String hotkeyDefinition = generateHotkeyDefinition(translatedModifierKeys, basicScriptDTO.getKey());
+        String hotkeyDefinition = this.generateHotkeyDefinition(translatedModifierKeys, basicScriptDTO.getKey());
 
-        String hotkeyCommand = generateHotkeyCommand(translatedCommand, basicScriptDTO.getParameters());
+        String hotkeyCommand = this.generateHotkeyCommand(translatedCommand, basicScriptDTO.getParameters());
 
         return hotkeyDefinition + hotkeyCommand + DefaultKeywords.RETURN.getKeyword();
     }
 
     private List<String> translateModifierKeys(String[] modifierKeys) {
 
-        List<String> translatedModifierKeys = new ArrayList<>(modifierKeys.length);
+        List<String> translatedModifierKeys;
         List<String> mKeys = Arrays.asList(modifierKeys);
         List<ModifierKeys> keys = mKeys.stream().map(ModifierKeys::getModifierKeyFromString).collect(Collectors.toList());
         translatedModifierKeys = keys.stream().map(ModifierKeys::getSymbol).collect(Collectors.toList());
@@ -63,10 +62,10 @@ public class BasicScriptGeneratorService {
             hotkeyCommandBuilder.append(parameter);
             hotkeyCommandBuilder.append(" ");
         }
-        
+
         // Remove the trailing whitespace character at the end.
         hotkeyCommandBuilder.deleteCharAt(hotkeyCommandBuilder.length() - 1);
-        
+
         hotkeyCommandBuilder.append(System.lineSeparator());
 
         return hotkeyCommandBuilder.toString();
