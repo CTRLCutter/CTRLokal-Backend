@@ -1,4 +1,4 @@
-package com.ctrlcutter.backend.util;
+package com.ctrlcutter.backend.util.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;

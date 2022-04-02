@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ctrlcutter.backend.constants.ModifierKeys;
 import com.ctrlcutter.backend.dto.DefaultDTO;
 import com.ctrlcutter.backend.dto.PreDefinedScriptDTO;
-import com.ctrlcutter.backend.util.FileReader;
+import com.ctrlcutter.backend.util.io.FileReader;
 
 @Service
 public class PreDefinedScriptGeneratorService {
