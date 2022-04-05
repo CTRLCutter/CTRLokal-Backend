@@ -1,8 +1,11 @@
 package com.ctrlcutter.backend.service.anonymization.parameter;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ScriptParameterAnonymizationServiceProvider {
 
-    public static IScriptParameterAnonymizationService provideAnonymizationService(String command) {
+    public IScriptParameterAnonymizationService provideAnonymizationService(String command) {
         switch (command) {
             case "RUN":
                 return new RunScriptParameterAnonymizationService();
