@@ -55,12 +55,12 @@ public class PreDefinedScriptGeneratorService {
         for (DefaultDTO shortcut : shortcutList) {
             translatedShortcutList.add("'" + shortcut.getKey() + "'");
 
-            translatedShortcutList.add(this.transformModifierKeys(shortcut.getModifierKeys()));
+            translatedShortcutList.add(this.transformModifierKeysMac(shortcut.getModifierKeys()));
         }
         return translatedShortcutList;
     }
 
-    private String transformModifierKeys(String[] modifierKeys) {
+    private String transformModifierKeysMac(String[] modifierKeys) {
         StringBuilder modifierKeyString = new StringBuilder();
 
         for (int i = 0; i < modifierKeys.length; i++) {
@@ -81,7 +81,7 @@ public class PreDefinedScriptGeneratorService {
 
         for (DefaultDTO shortcut : shortcutList) {
             StringBuilder translatedShortcutBuilder = new StringBuilder();
-            translatedShortcutBuilder.append(this.translateModifierKeys(shortcut.getModifierKeys()));
+            translatedShortcutBuilder.append(this.translateModifierKeysWindows(shortcut.getModifierKeys()));
             translatedShortcutBuilder.append(shortcut.getKey());
 
             translatedShortcutList.add(translatedShortcutBuilder.toString());
@@ -90,7 +90,7 @@ public class PreDefinedScriptGeneratorService {
         return translatedShortcutList;
     }
 
-    private String translateModifierKeys(String[] modifierKeys) {
+    private String translateModifierKeysWindows(String[] modifierKeys) {
 
         StringBuilder modifierKeysBuilder = new StringBuilder();
 
