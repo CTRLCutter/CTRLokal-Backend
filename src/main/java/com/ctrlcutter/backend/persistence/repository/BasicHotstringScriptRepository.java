@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.ctrlcutter.backend.persistence.model.BasicHotstringScript;
 
 @Repository
-public interface BasicHotstringScriptRepository extends JpaRepository<BasicHotstringScript, Long> {
-
-}
+public interface BasicHotstringScriptRepository extends JpaRepository<BasicHotstringScript, Long> {}

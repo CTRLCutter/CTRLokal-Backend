@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class DefaultScript {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String key;
@@ -15,8 +18,9 @@ public class DefaultScript {
     @ElementCollection
     private List<String> modifierKeys;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "preDefinedScript_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "preDefinedScript_id")
+    @JsonIgnoreProperties("shortcuts")
     private PreDefinedScript preDefinedScript;
 
     public DefaultScript() {}

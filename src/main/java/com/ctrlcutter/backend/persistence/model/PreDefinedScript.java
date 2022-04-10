@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class PreDefinedScript {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String os;
@@ -15,6 +18,7 @@ public class PreDefinedScript {
     private String scriptType;
 
     @OneToMany(mappedBy = "preDefinedScript", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("preDefinedScript")
     private List<DefaultScript> shortcuts;
 
     public PreDefinedScript() {}
