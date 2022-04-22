@@ -5,15 +5,15 @@ import java.util.List;
 import com.ctrlcutter.backend.persistence.model.BasicScript;
 import com.ctrlcutter.backend.persistence.model.PreDefinedScript;
 
-public class BasicPreDefinedDTO {
+public class BasicAndPreDefinedDTO {
 
     private List<BasicScript> basicScripts;
 
     private List<PreDefinedScript> preDefinedScripts;
 
-    public BasicPreDefinedDTO() {}
+    public BasicAndPreDefinedDTO() {}
 
-    public BasicPreDefinedDTO(List<BasicScript> basicScripts, List<PreDefinedScript> preDefinedScripts) {
+    public BasicAndPreDefinedDTO(List<BasicScript> basicScripts, List<PreDefinedScript> preDefinedScripts) {
         this.basicScripts = basicScripts;
         this.preDefinedScripts = preDefinedScripts;
     }
