@@ -12,7 +12,7 @@ import com.ctrlcutter.backend.service.anonymization.parameter.ScriptParameterAno
 @Service
 public class ScriptAnonymizationService {
 
-    private ScriptParameterAnonymizationServiceProvider scriptParameterAnonymizationServiceProvider;
+    private final ScriptParameterAnonymizationServiceProvider scriptParameterAnonymizationServiceProvider;
 
     @Autowired
     public ScriptAnonymizationService(ScriptParameterAnonymizationServiceProvider scriptParameterAnonymizationServiceProvider) {

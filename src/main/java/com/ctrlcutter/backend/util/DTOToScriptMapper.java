@@ -40,7 +40,11 @@ public class DTOToScriptMapper {
     public PreDefinedScript mapPreDefinedScript(PreDefinedScript preDefinedScript, PreDefinedScriptDTO preDefinedScriptDTO) {
         preDefinedScript.setOs(preDefinedScriptDTO.getOs());
         preDefinedScript.setScriptType(preDefinedScriptDTO.getScriptType());
-        preDefinedScript.setShortcuts(this.convertDefaultDTOtoScript(preDefinedScriptDTO.getShortcuts(), preDefinedScript));
+        if (preDefinedScript.getShortcuts() == null) {
+            preDefinedScript.setShortcuts(this.convertDefaultDTOtoScript(preDefinedScriptDTO.getShortcuts(), preDefinedScript));
+        } else {
+            preDefinedScript.setShortcuts(this.mapDefaultScripts(preDefinedScript.getShortcuts(), preDefinedScriptDTO.getShortcuts()));
+        }
 
         return preDefinedScript;
     }
@@ -59,5 +63,15 @@ public class DTOToScriptMapper {
         }
 
         return defaultScriptList;
+    }
+
+    private List<DefaultScript> mapDefaultScripts(List<DefaultScript> defaultScripts, DefaultDTO[] defaultDTOs) {
+
+        for (int i = 0; i < defaultScripts.size(); i++) {
+            defaultScripts.get(i).setKey(defaultDTOs[i].getKey());
+            defaultScripts.get(i).setModifierKeys(Arrays.asList(defaultDTOs[i].getModifierKeys()));
+        }
+
+        return defaultScripts;
     }
 }
