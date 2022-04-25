@@ -76,9 +76,14 @@ public class PersistenceSaveService {
         this.preDefinedScriptRepository.saveAndFlush(preDefinedScript);
     }
 
-    public List<AnonymizedScriptDTO> anonymizeScriptsForBackup() {
+    public List<AnonymizedScriptDTO> anonymizeScriptsForBackup(boolean saveAll) {
         List<PreDefinedScript> preDefinedScripts = this.preDefinedScriptRepository.findAll();
-        List<BasicScript> basicScripts = this.basicScriptRepository.findBasicScriptsByCommand("RUN");
+        List<BasicScript> basicScripts;
+        if (saveAll) {
+            basicScripts = this.basicScriptRepository.findAll();
+        } else {
+            basicScripts = this.basicScriptRepository.findBasicScriptsByCommand("RUN");
+        }
 
         List<AnonymizedScriptDTO> anonymizedScripts = new ArrayList<>();
 
