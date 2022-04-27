@@ -126,7 +126,7 @@ public class PersistenceSaveService {
                 .header("sessionkey", sessionkey).header("Authorization", generateBasicAuthHeaderValue()).GET().build();
 
         String responseJson = sendRequest(req);
-        
+
         ObjectMapper mapper = new ObjectMapper();
         List<ShortcutDTO> list;
         try {
@@ -135,6 +135,18 @@ public class PersistenceSaveService {
         } catch (JsonProcessingException e) {
             throw new APIRequestException("Error during JSON-Mapping of ShortcutDTO during API-Request", e);
         }
+    }
+
+    public void deleteBasicScript(Long id) {
+        this.basicScriptRepository.deleteById(id);
+    }
+
+    public void deleteHotstring(Long id) {
+        this.basicHotstringScriptRepository.deleteById(id);
+    }
+
+    public void deletePredefinedScript(Long id) {
+        this.preDefinedScriptRepository.deleteById(id);
     }
 
     public void deleteAll() {
